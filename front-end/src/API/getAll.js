@@ -1,33 +1,16 @@
-import { useState , useEffect } from "react";
+import { useEffect, useState } from "react"
 
-const URL_ALL = 'http://localhost:8080/tasklist/all';
-const URL_UPDATE = 'http://localhost:8080/tasklist/update';
-
-export const getAll = () => {
-    const [data, setData] = useState(null);
+export default function API(){
+    const [data, setData] = useState([]);
+    const [err, setErr] = useState(false);
+    
     useEffect(() => {
-      fetch(URL_ALL)
-        .then((resp) => resp.json())
-        .then((data) => {
-            setData(data);
-        });
-    }, [path]);
-    return {data}
-};
+      fetch('http://localhost:8080/tasklist/all')
+        .then(res => res.json())
+        .then(data => setData(data))
+        .catch((err) => setErr(err));
+        console.log(err);
+    }, []);
 
-
-export const update = (path) => {
-    const [data, setData] = useState(null);
-    useEffect(() => {
-      fetch(URL_UPDATE + path)
-        .then((resp) => resp.json())
-        .then((data) => {
-            setData(data);
-        });
-    }, [path]);
-    return {data}
-};
-
-
-
-export { getAll , update};
+    return data;
+}

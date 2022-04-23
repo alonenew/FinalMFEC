@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
+
+import React from 'react';
 
 import "./App.css";
+import Category from "./components/Category";
+import Checklist from "./components/Checklist";
 import TaskList from "./components/TaskList";
 
 export default function App() {
-  const [data, setData] = useState();
 
-  useEffect(() => {
-    fetch("http://localhost:8080/tasklist/all")
-      .then((resp) => resp.json())
-      .then((data) => {
-        setData(data);
-      });
-    console.log({ data });
-  }, []);
-
-  return (
+  return (  
     <div className="App">
       <TaskList />
+      <Checklist />
+      <Category />
     </div>
   );
 }

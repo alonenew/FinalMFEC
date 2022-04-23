@@ -50,7 +50,7 @@ form ul{
 form label{
   display: inline-block;
   text-align: right;
-  width: 100px;
+  width: 150px;
 }
 
 form input{
@@ -61,13 +61,47 @@ form input{
 
 form button{
   height: 30px;
-  width: 150px;
+  width: 200px;
   margin: 10px;
 }
 
-select{
-  margin: 10px;
-  height: 30px;
-  width: 310px;
-  padding: 2px;
+
+.app ul{
+  list-style: none;
+}
+
+.task{
+  margin: auto;
+  width: 1000px;
+}
+
+.tabletask {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tabletask  td, .tabletask  th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.tabletask  tr:hover{
+  background-color: #f2f2f2;
+}
+
+.tabletask  tr:hover {
+  background-color: #ddd;
+}
+
+.tabletask td {
+  text-align: center;
+}
+
+.tabletask  th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
 }
