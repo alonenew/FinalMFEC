@@ -1,8 +1,8 @@
 import React from "react";
-import API from "../API/getAll";
+import TaskAPI from "../API/TaskAPI";
 
 export default function TaskList() {
-  const data = API();
+  const dataTask = TaskAPI();
 
   return (
     <div>
@@ -36,7 +36,7 @@ export default function TaskList() {
               <th>Note</th>
               <th>Status</th>
             </tr>
-            {data.map((tasks) => (
+            {dataTask.map((tasks) => (
               <tr key={tasks.task_id}>
                 <td>{tasks.task_id}</td>
                 <td>{tasks.task_name}</td>
@@ -53,13 +53,3 @@ export default function TaskList() {
   );
 }
 
-{
-  /* {data.map((tasks) => (
-          <ul key={tasks.task_id}>
-            <li>
-              {data.task_id} {tasks.task_name} {tasks.start_date}
-              {tasks.due_date} {tasks.note} {tasks.status}
-            </li>
-          </ul>
-        ))} */
-}

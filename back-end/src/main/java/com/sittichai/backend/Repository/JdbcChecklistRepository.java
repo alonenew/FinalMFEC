@@ -20,7 +20,7 @@ public class JdbcChecklistRepository {
     private NamedParameterJdbcTemplate template; // ต้องเขียนตัว Query เอง
 
     private static final String INSERT_CHECKLIST = new StringBuilder(
-            "INSERT INTO checklist (todo_name,task_id,is_completed) VALUES (:todo_name, :task_id, :is_completed)")
+            "INSERT INTO checklist (todo_name,is_completed,task_id) VALUES (:todo_name, :is_completed, (SELECT t.task_id From task t WHERE t.task_id = :task_id))")
             .toString();
 
     private static final String SELECT_ALL = "SELECT * FROM checklist";

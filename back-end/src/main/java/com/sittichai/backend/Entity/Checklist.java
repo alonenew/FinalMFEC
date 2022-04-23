@@ -2,6 +2,11 @@ package com.sittichai.backend.Entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name = "checklist")
 public class Checklist {
@@ -14,7 +19,7 @@ public class Checklist {
     @Column(name = "todo_name")
     private String todo_name;
 
-    @Column(name="task_id")
+    @Column(name = "task_id")
     private Integer task_id;
 
     @Column(name = "is_completed")
