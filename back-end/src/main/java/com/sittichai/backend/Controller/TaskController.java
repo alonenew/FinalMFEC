@@ -23,7 +23,7 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
   
-      @PostMapping("/create")
+      @PostMapping("/tasklist/create")
       public ResponseEntity<SuccessResponse<String>> createTodo(@RequestBody TaskRequest taskRequest){
         taskService.createTodo(taskRequest);
         return ResponseEntity.ok(new SuccessResponse<String>());
