@@ -2,11 +2,6 @@ package com.sittichai.backend.Entity;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 @Entity
 @Table(name = "checklist")
 public class Checklist {
