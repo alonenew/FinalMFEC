@@ -100,9 +100,11 @@ export default function UpdateTask() {
         />
         <label>Status :</label>
         <input
-          type="select"
+          type="number"
           id="status"
           placeholder="Status"
+          min={1}
+          max={3}
           value={status}
           onChange={(e) => setStatus(e.target.value)}
         />

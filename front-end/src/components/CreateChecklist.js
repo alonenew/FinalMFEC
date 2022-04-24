@@ -46,7 +46,7 @@ export default function CreateChecklist() {
         <input type="number" placeholder="Task ID" onChange={(e) => setCategory_id(e.target.value)}/>
         <br />
         <label>Is Complete :</label>
-        <input type="number" placeholder="Between 1 or 2" min="1" max="2"onChange={(e) => setStartDate(e.target.value)}/>
+        <input type="number" placeholder="Fail = 0, Success = 1" min={0} max={1} onChange={(e) => setStartDate(e.target.value)}/>
         <br />
         <button type="submit">Add Checklist</button>
       </form>

@@ -11,8 +11,6 @@ export default class Home extends Component {
       <TaskList />
       <br />
       <Checklist />
-      <br />
-      <Category />
     </div>
     );
   }

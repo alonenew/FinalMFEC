@@ -42,30 +42,12 @@ export default function Category() {
               <th>Category ID</th>
               <th>Category Name</th>
               <th>Image URL</th>
-              <th>Update</th>
-              <th>Delete</th>
             </tr>
             {dataCategory.map((category) => (
               <tr key={category.category_id}>
                 <td>{category.category_id}</td>
                 <td>{category.category_name}</td>
                 <td>{category.image_url}</td>
-                <td>
-                  <button
-                    className="update"
-                    onClick={() => UpdateCategory(category.category_id)}
-                  >
-                    Update
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="delete"
-                    onClick={() => DeleteCategory(category.category_id)}
-                  >
-                    Delete
-                  </button>
-                </td>
               </tr>
             ))}
           </tbody>

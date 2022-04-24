@@ -55,7 +55,7 @@ export default function CreateTask() {
         <label>Note :</label>
         <input type="text" id="note" placeholder="Note" onChange={(e) => setNote(e.target.value)}/>
         <label>Status :</label>
-        <input type="select" id="status" placeholder="Status" onChange={(e) => setStatus(e.target.value)}/>
+        <input type="number" id="status" placeholder="Input 1 - 3" min={1} max={3} onChange={(e) => setStatus(e.target.value)}/>
         <br />
         <button type="submit">Add Task</button>
       </form>

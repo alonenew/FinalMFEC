@@ -56,7 +56,7 @@ export default function UpdateChecklist() {
         <input type="number" placeholder="Task ID" value={task_id} onChange={(e) => setTask_id(e.target.value)}/>
         <br />
         <label>Is Complete :</label>
-        <input type="number" placeholder="Between 1 or 2" min="1" max="2" value={is_completed} onChange={(e) => setIs_Completed(e.target.value)}/>
+        <input type="number" placeholder="Fail = 0, Success = 1" min={0} max={1} value={is_completed} onChange={(e) => setIs_Completed(e.target.value)}/>
         <br />
         <button type="submit">Update</button>
       </form>
