@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Checklist from "./Checklist";
+import Checklist from "../page/Checklist";
 
 export default function CreateChecklist() {
 
@@ -25,7 +25,7 @@ export default function CreateChecklist() {
       .then((res) => res.json())
       .then((result) => {
         if (result["description"] === "SUCCESS") {
-          window.location.href = "/checklist";
+          window.location.href = "/";
         }
       });
   };
@@ -33,7 +33,7 @@ export default function CreateChecklist() {
   return (
     <div>
       <form onSubmit={Submit}>
-        <h1>Checklist</h1>
+        <h1>Create Checklist</h1>
         <label>Todo Name :</label>
         <input type="text" placeholder="Todo Name" onChange={(e) => setTodo_name(e.target.value)} />
         <br />

@@ -28,7 +28,7 @@ export default function TaskList() {
                 window.location.href = '/';
               }
             }
-          );
+    );
   }
 
   return (

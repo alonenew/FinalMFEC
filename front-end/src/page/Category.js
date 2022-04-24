@@ -1,22 +1,21 @@
 import React from "react";
 
-import ChecklistAPI from "../API/ChecklistAPI";
+import CategoryAPI from "../API/CategoryAPI";
 
-export default function Checklist() {
+export default function Category() {
 
-  const dataChecklist = ChecklistAPI();
-  console.log(dataChecklist);
+  const dataCategory = CategoryAPI();
 
-  const UpdateChecklist = (todo_id) => {
-    window.location = "/checklistUpdate" + todo_id;
+  const UpdateCategory = (category_id) => {
+    window.location = "/categoryUpdate" + category_id;
   };
 
-  const DeleteChecklist = (todo_id) => {
+  const DeleteCategory = (category_id) => {
     let data = {
-      todo_id: todo_id,
+      category_id: category_id,
     };
     console.log(JSON.stringify(data));
-    fetch("http://localhost:8080/checklist/delete", {
+    fetch("http://localhost:8080/category/delete", {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -27,33 +26,33 @@ export default function Checklist() {
       .then((res) => res.json())
       .then((result) => {
         if (result["description"] === "SUCCESS") {
-          window.location.href = "/checklist";
+          window.location.href = "/";
         }
       });
   };
+
   return (
     <div>
       <div className="task">
+        <h1>Category</h1>
         <table className="tabletask">
           <tbody>
             <tr>
-              <th>Checklist ID</th>
-              <th>Todo Name</th>
-              <th>Task ID</th>
-              <th>Is Complete</th>
+              <th>Category ID</th>
+              <th>Category Name</th>
+              <th>Image URL</th>
               <th>Update</th>
               <th>Delete</th>
             </tr>
-            {dataChecklist.map((checklist) => (
-              <tr key={checklist.todo_id}>
-                <td>{checklist.todo_id}</td>
-                <td>{checklist.todo_name}</td>
-                <td>{checklist.task_id}</td>
-                <td>{checklist.is_completed}</td>
+            {dataCategory.map((category) => (
+              <tr key={category.category_id}>
+                <td>{category.category_id}</td>
+                <td>{category.category_name}</td>
+                <td>{category.iamge_url}</td>
                 <td>
                   <button
                     className="update"
-                    onClick={() => UpdateChecklist(checklist.todo_id)}
+                    onClick={() => UpdateCategory(category.category_id)}
                   >
                     Update
                   </button>
@@ -61,7 +60,7 @@ export default function Checklist() {
                 <td>
                   <button
                     className="delete"
-                    onClick={() => DeleteChecklist(checklist.todo_id)}
+                    onClick={() => DeleteCategory(category.category_id)}
                   >
                     Delete
                   </button>

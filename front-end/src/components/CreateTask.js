@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TaskList from "./TaskList";
+import TaskList from "../page/TaskList";
 
 export default function CreateTask() {
 
