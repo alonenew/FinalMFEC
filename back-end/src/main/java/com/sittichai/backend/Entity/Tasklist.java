@@ -47,11 +47,12 @@ public class Tasklist {
         this.task_name = task_name;
     }
 
-    public Integer getCategory() {
+
+    public Integer getCategory_id() {
         return category_id;
     }
 
-    public void setCategory(Integer category_id) {
+    public void setCategory_id(Integer category_id) {
         this.category_id = category_id;
     }
 

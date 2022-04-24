@@ -28,7 +28,7 @@ public class TaskService {
     public Boolean createTodo(TaskRequest taskRequest) {
         Tasklist tasklist = new Tasklist();
         tasklist.setTask_name(taskRequest.getTask_name());
-        tasklist.setCategory(taskRequest.getCategory_id());
+        tasklist.setCategory_id(taskRequest.getCategory_id());
         tasklist.setStart_date(taskRequest.getStart_date());
         tasklist.setDue_date(taskRequest.getDue_date());
         tasklist.setNote(taskRequest.getNote());
@@ -48,7 +48,7 @@ public class TaskService {
 		}
 		Tasklist existed = optionalUserOptional.get();
 		existed.setTask_id(request.getTask_id());
-		existed.setCategory(request.getCategory_id());
+		existed.setCategory_id(request.getCategory_id());
 		existed.setStart_date(request.getStart_date());
 		existed.setDue_date(request.getDue_date());
 		existed.setNote(request.getNote());

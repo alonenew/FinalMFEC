@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ChecklistService {
+
     @Autowired
     private ChecklistRepository checklistRepository;
 
@@ -39,21 +40,20 @@ public class ChecklistService {
 	}
 
     public Checklist update(ChecklistRequest checklistRequest) {
-		Optional<Checklist> optionalUserOptional = checklistRepository.findById(checklistRequest.getTask_id());
+		Optional<Checklist> optionalUserOptional = checklistRepository.findById(checklistRequest.getTodo_id());
 		if(!optionalUserOptional.isPresent()) {
 			throw new BusinessException(AppConstant.ERROR_CODE_001, AppConstant.ERRORS_DESCRIPTION_001);
 		}
 		Checklist existed = optionalUserOptional.get();
-		existed.setTodo_id(checklistRequest.getTodo_id());
 		existed.setTodo_name(checklistRequest.getTodo_name());
 		existed.setTask_id(checklistRequest.getTask_id());
 		existed.setIs_completed(checklistRequest.getIs_completed());
-		
+		existed.setTodo_id(checklistRequest.getTodo_id());
 		return checklistRepository.save(existed);
 	}
 
 	public void delete(ChecklistRequest request) {
-		Optional<Checklist> optionalUserOptional = checklistRepository.findById(request.getTask_id());
+		Optional<Checklist> optionalUserOptional = checklistRepository.findById(request.getTodo_id());
 		if(!optionalUserOptional.isPresent()) {
 			throw new BusinessException(AppConstant.ERROR_CODE_001, AppConstant.ERRORS_DESCRIPTION_001);
 		}

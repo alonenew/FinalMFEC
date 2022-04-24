@@ -87,10 +87,10 @@ public class JdbcChecklistRepository {
     public Boolean update(Checklist checklist) {
         try {
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
-                    .addValue("todo_id", checklist.getTodo_id())
                     .addValue("todo_name", checklist.getTodo_name())
                     .addValue("task_id", checklist.getTask_id())
-                    .addValue("is_completed", checklist.getIs_completed());
+                    .addValue("is_completed", checklist.getIs_completed())
+                    .addValue("todo_id", checklist.getTodo_id());
             Integer rowAffected = template.update(UPDATE_VALUE, mapSqlParameterSource);
             if (rowAffected > 0) {
                 return Boolean.TRUE;

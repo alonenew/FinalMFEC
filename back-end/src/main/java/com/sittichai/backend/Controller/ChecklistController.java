@@ -43,7 +43,7 @@ public class ChecklistController {
       return ResponseEntity.ok(new SuccessResponse<Checklist>(checklistService.update(checklistRequest)));
     }
     
-    @DeleteMapping("/delete")
+    @DeleteMapping("/checklist/delete")
     public ResponseEntity<SuccessResponse<String>> delete(@RequestBody ChecklistRequest checklistRequest){
       checklistService.delete(checklistRequest);
       return ResponseEntity.ok(new SuccessResponse<String>());

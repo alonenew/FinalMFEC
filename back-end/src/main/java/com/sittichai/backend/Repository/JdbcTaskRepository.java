@@ -41,7 +41,7 @@ public class JdbcTaskRepository {
         try {
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                     .addValue("task_name", tasklist.getTask_name())
-                    .addValue("category_id", tasklist.getCategory())
+                    .addValue("category_id", tasklist.getCategory_id())
                     .addValue("start_date", tasklist.getStart_date())
                     .addValue("due_date", tasklist.getDue_date())
                     .addValue("note", tasklist.getNote())
@@ -92,7 +92,7 @@ public class JdbcTaskRepository {
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                     .addValue("task_id", tasklist.getTask_id())
                     .addValue("task_name", tasklist.getTask_name())
-                    .addValue("category_id", tasklist.getCategory())
+                    .addValue("category_id", tasklist.getCategory_id())
                     .addValue("start_date", tasklist.getStart_date())
                     .addValue("due_date", tasklist.getDue_date())
                     .addValue("note", tasklist.getNote())
