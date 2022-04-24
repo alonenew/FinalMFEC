@@ -9,6 +9,7 @@ import com.sittichai.backend.common.SuccessResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,34 +19,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin()
 public class ChecklistController {
 
   @Autowired
   private ChecklistService checklistService;
 
-    @PostMapping("/checklist/create")
-    public ResponseEntity<SuccessResponse<String>> createTodo(@RequestBody ChecklistRequest checklistRequest){
-      checklistService.createChecklist(checklistRequest);
-      return ResponseEntity.ok(new SuccessResponse<String>());
-    }
-
-    @GetMapping("/checklist/all")
-    public List<Checklist> getAll() {
-      return (List<Checklist>) checklistService.findAll();
+   
+  @PostMapping("/checklist/create")
+  public ResponseEntity<SuccessResponse<String>> createTodo(@RequestBody ChecklistRequest checklistRequest) {
+    checklistService.createChecklist(checklistRequest);
+    return ResponseEntity.ok(new SuccessResponse<String>());
   }
-    @GetMapping("/checklist/search/{id}")
-    public ResponseEntity<SuccessResponse<Checklist>> get(@PathVariable Integer id){
-      return ResponseEntity.ok(new SuccessResponse<Checklist>(checklistService.retrieved(id)));
-    }
 
-    @PatchMapping("/checklist/update")
-    public ResponseEntity<SuccessResponse<Checklist>> update(@RequestBody ChecklistRequest checklistRequest){
-      return ResponseEntity.ok(new SuccessResponse<Checklist>(checklistService.update(checklistRequest)));
-    }
-    
-    @DeleteMapping("/checklist/delete")
-    public ResponseEntity<SuccessResponse<String>> delete(@RequestBody ChecklistRequest checklistRequest){
-      checklistService.delete(checklistRequest);
-      return ResponseEntity.ok(new SuccessResponse<String>());
-    }
+   
+  @GetMapping("/checklist/all")
+  public List<Checklist> getAll() {
+    return (List<Checklist>) checklistService.findAll();
+  }
+   
+  @GetMapping("/checklist/search/{id}")
+  public ResponseEntity<SuccessResponse<Checklist>> get(@PathVariable Integer id) {
+    return ResponseEntity.ok(new SuccessResponse<Checklist>(checklistService.retrieved(id)));
+  }
+   
+  @PatchMapping("/checklist/update")
+  public ResponseEntity<SuccessResponse<Checklist>> update(@RequestBody ChecklistRequest checklistRequest) {
+    return ResponseEntity.ok(new SuccessResponse<Checklist>(checklistService.update(checklistRequest)));
+  }
+   
+  @DeleteMapping("/checklist/delete")
+  public ResponseEntity<SuccessResponse<String>> delete(@RequestBody ChecklistRequest checklistRequest) {
+    checklistService.delete(checklistRequest);
+    return ResponseEntity.ok(new SuccessResponse<String>());
+  }
 }

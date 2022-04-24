@@ -105,3 +105,37 @@ form button{
   background-color: #04AA6D;
   color: white;
 }
+
+.update {
+	background-color:#44c767;
+	border-radius:15px;
+	border: none;
+	cursor:pointer;
+	color:#ffffff;
+	padding:10px 10px;
+  width: 70px;
+}
+.update:hover {
+	background-color:blue;
+}
+.update:active {
+	position:relative;
+	top:1px;
+}
+
+.delete {
+	background-color:red;
+	border-radius:15px;
+	border: none;
+	cursor:pointer;
+	color:#ffffff;
+	padding:10px 10px;
+  width: 70px;
+}
+.delete:hover {
+	background-color:orange;
+}
+.delete:active {
+	position:relative;
+	top:1px;
+}

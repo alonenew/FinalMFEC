@@ -23,7 +23,7 @@ public class JdbcTaskRepository {
             "INSERT INTO task (task_name,category_id,start_date,due_date,note,status) VALUES (:task_name, :category_id, :start_date, :due_date, :note, :status)")
             .toString();
 
-    private static final String SELECT_ALL = "SELECT * FROM task";
+    private static final String SELECT_ALL = "SELECT * FROM task ORDER BY status DESC";
 
     private static final String SELECT_VALUE = new StringBuilder(
             "SELECT * FROM task WHERE task_id = :task_id")
