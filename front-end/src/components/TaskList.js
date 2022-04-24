@@ -2,10 +2,11 @@ import React from "react";
 import TaskAPI from "../API/TaskAPI";
 
 export default function TaskList() {
+
   const dataTask = TaskAPI();
 
   const UpdateTask = (task_id) => {
-    window.location = '/tasklist/update/'+task_id
+    window.location = '/taskupdate'+task_id
   }
 
   const DeleteTask = (task_id) => {

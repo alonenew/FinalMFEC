@@ -1,71 +1,63 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import TaskList from "./TaskList";
 
 export default function UpdateTask() {
+  const [taskName, setTaskName] = useState("");
+  const [category_id, setCategory_id] = useState("");
+  const [startdate, setStartDate] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [note, setNote] = useState("");
+  const [status, setStatus] = useState("");
 
-  const [taskid, setTaskID] = useState();
-  const [taskName, setTaskName] = useState();
-  const [category_id, setCategory_id] = useState();
-  const [startdate, setStartDate] = useState();
-  const [dueDate, setDueDate] = useState();
-  const [note, setNote] = useState();
-  const [status, setStatus] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch("http://localhost:8080/tasklist/search/" + id)
+      .then((res) => res.json())
+      .then((result) => {
+        setTaskName(result.data.task_name);
+        setCategory_id(result.data.category_id);
+        setStartDate(result.data.start_date);
+        setDueDate(result.data.due_date);
+        setNote(result.data.note);
+        setStatus(result.data.status);
+      });
+      
+  }, [id]);
+
   
 
-    const { id } = useParams();
-
-    useEffect(() => {
-    fetch("http://localhost:8080/tasklist/update/" + id, )
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setTaskID(result.tasks.task_id)
-            setTaskName(result.tasks.task_name)
-            setCategory_id(result.tasks.category_id)
-            setStartDate(result.tasks.start_date)
-            setDueDate(result.tasks.due_date)
-            setNote(result.tasks.note)
-            setStatus(result.tasks.status)
-          }
-        )
-    }, [id])
-  
-    const Submit = event => {
-      event.preventDefault();
-      var data = {
-
-      }
-      fetch('http://localhost:8080/tasklist/update', {
-        method: 'PATCH',
-        headers: {
-          Accept: 'application/form-data',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-      .then(res => res.json())
-      .then(
-        (result) => {
-          if (result['description'] === 'SUCCESS') {
-            window.location.href = '/';
-          }
+  const Submit = () => {
+    var data = {
+      'task_id': id,
+      'task_name': taskName,
+      'category_id': category_id,
+      'start_date': startdate,
+      'due_date': dueDate,
+      'note': note,
+      'status': status,
+    };
+    fetch("http://localhost:8080/tasklist/update", {
+      method: "PATCH",
+      headers: {
+        Accept: "application/form-data",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result["description"] === "SUCCESS") {
+          window.location.href = "/";
         }
-      )
-    }
+      });
+  };
 
   return (
     <div>
       <form onSubmit={Submit}>
-        <h1>Update TaskList</h1>
-        <label>Task ID :</label>
-        <input
-          disabled
-          type="number"
-          id="task_id"
-          placeholder="Task_id"
-          value={taskid}
-          onChange={(e) => setTaskID(e.target.value)}
-        />
+        <h1>Update TaskList {id}</h1>
         <label>Task Name :</label>
         <input
           type="text"
@@ -117,6 +109,7 @@ export default function UpdateTask() {
         <br />
         <button type="submit">Update Task</button>
       </form>
+      <TaskList />
     </div>
   );
 }
