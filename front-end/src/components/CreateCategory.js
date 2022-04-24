@@ -32,11 +32,12 @@ export default function CreateCategory() {
     <div>
       <form onSubmit={Submit}>
         <h1>Create Category</h1>
+        <hr />
         <label>Category Name :</label>
         <input type="text" placeholder="category_name" onChange={(e) => setCategory_name(e.target.value)} />
         <br />
         <label>Image URL :</label>
-        <input type="number" placeholder="Image URL" onChange={(e) => setImage_url(e.target.value)}/>
+        <input type="text" placeholder="Image URL" onChange={(e) => setImage_url(e.target.value)}/>
         <br />
         <button type="submit">Add Category</button>
       </form>

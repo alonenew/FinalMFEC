@@ -1,14 +1,20 @@
-import React from "react";
+import React, { Component } from 'react';
+
 import Category from "./Category";
 import Checklist from "./Checklist";
 import TaskList from "./TaskList";
-
-export default function Home() {
-  return (
-    <div>
+export default class Home extends Component {
+  state = {  } 
+  render() { 
+    return (
+      <div>
       <TaskList />
+      <br />
       <Checklist />
+      <br />
       <Category />
     </div>
-  );
+    );
+  }
 }
+ 

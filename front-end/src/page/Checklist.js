@@ -35,6 +35,7 @@ export default function Checklist() {
     <div>
       <div className="task">
         <h1>Checklist</h1>
+        <hr />
         <table className="tabletask">
           <tbody>
             <tr>
@@ -50,7 +51,8 @@ export default function Checklist() {
                 <td>{checklist.todo_id}</td>
                 <td>{checklist.todo_name}</td>
                 <td>{checklist.task_id}</td>
-                <td>{checklist.is_completed}</td>
+                {checklist.is_completed === 2 && <td>False</td>}
+                {checklist.is_completed === 1 && <td>Completed</td>}
                 <td>
                   <button
                     className="update"

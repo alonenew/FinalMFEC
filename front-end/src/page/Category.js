@@ -35,6 +35,7 @@ export default function Category() {
     <div>
       <div className="task">
         <h1>Category</h1>
+        <hr />
         <table className="tabletask">
           <tbody>
             <tr>
@@ -48,7 +49,7 @@ export default function Category() {
               <tr key={category.category_id}>
                 <td>{category.category_id}</td>
                 <td>{category.category_name}</td>
-                <td>{category.iamge_url}</td>
+                <td>{category.image_url}</td>
                 <td>
                   <button
                     className="update"

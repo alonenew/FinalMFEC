@@ -34,6 +34,7 @@ export default function TaskList() {
   return (
     <div className="task">
       <h1>Task List</h1>
+      <hr />
       <table className="tabletask">
         <tbody>
           <tr>

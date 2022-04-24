@@ -41,6 +41,7 @@ export default function CreateTask() {
     <div>
       <form onSubmit={Submit}>
         <h1>Create TaskList</h1>
+        <hr />
         <label>Task Name :</label>
         <input type="text" id="task_name" placeholder="TaskName" onChange={(e) => setTaskName(e.target.value)}/>
         <label>Category ID :</label>

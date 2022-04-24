@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import TaskAPI from "../API/TaskAPI";
 import Checklist from "../page/Checklist";
 
 export default function CreateChecklist() {
+
+    const dataTask = TaskAPI;
 
   const [todo_name, setTodo_name] = useState();
   const [task_id, setCategory_id] = useState();
@@ -30,10 +33,12 @@ export default function CreateChecklist() {
       });
   };
 
+  console.log(dataTask);
   return (
     <div>
       <form onSubmit={Submit}>
         <h1>Create Checklist</h1>
+        <hr />
         <label>Todo Name :</label>
         <input type="text" placeholder="Todo Name" onChange={(e) => setTodo_name(e.target.value)} />
         <br />
@@ -41,7 +46,7 @@ export default function CreateChecklist() {
         <input type="number" placeholder="Task ID" onChange={(e) => setCategory_id(e.target.value)}/>
         <br />
         <label>Is Complete :</label>
-        <input type="number" placeholder="Is Complete" onChange={(e) => setStartDate(e.target.value)}/>
+        <input type="number" placeholder="Between 1 or 2" min="1" max="2"onChange={(e) => setStartDate(e.target.value)}/>
         <br />
         <button type="submit">Add Checklist</button>
       </form>

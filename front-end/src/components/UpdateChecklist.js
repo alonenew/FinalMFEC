@@ -48,7 +48,7 @@ export default function UpdateChecklist() {
   return (
     <div>
       <form onSubmit={Submit}>
-        <h1>Checklist</h1>
+        <h1>Update Checklist</h1>
         <label>Todo Name :</label>
         <input type="text" placeholder="Todo Name" value={todo_name} onChange={(e) => setTodo_Name(e.target.value)} />
         <br />
@@ -56,9 +56,9 @@ export default function UpdateChecklist() {
         <input type="number" placeholder="Task ID" value={task_id} onChange={(e) => setTask_id(e.target.value)}/>
         <br />
         <label>Is Complete :</label>
-        <input type="number" placeholder="Is Complete" value={is_completed} onChange={(e) => setIs_Completed(e.target.value)}/>
+        <input type="number" placeholder="Between 1 or 2" min="1" max="2" value={is_completed} onChange={(e) => setIs_Completed(e.target.value)}/>
         <br />
-        <button type="submit">Add Checklist</button>
+        <button type="submit">Update</button>
       </form>
       <Checklist />
     </div>

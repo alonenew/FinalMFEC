@@ -107,7 +107,7 @@ export default function UpdateTask() {
           onChange={(e) => setStatus(e.target.value)}
         />
         <br />
-        <button type="submit">Update Task</button>
+        <button type="submit">Update</button>
       </form>
       <TaskList />
     </div>

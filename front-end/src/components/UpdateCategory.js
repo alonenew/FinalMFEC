@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Checklist from "../page/Checklist";
+import Category from "../page/Category";
 
 export default function UpdateCategory() {
-  const [todo_name, setTodo_Name] = useState("");
-  const [task_id, setTask_id] = useState("");
-  const [is_completed, setIs_Completed] = useState("");
+  const [category_name, setCategory_Name] = useState("");
+  const [image_url, setImage_url] = useState("");
 
   const { id } = useParams();
 
@@ -13,9 +12,8 @@ export default function UpdateCategory() {
     fetch("http://localhost:8080/category/search/" + id)
       .then((res) => res.json())
       .then((result) => {
-        setTodo_Name(result.data.todo_name);
-        setTask_id(result.data.task_id);
-        setIs_Completed(result.data.is_completed);
+        setCategory_Name(result.data.category_name);
+        setImage_url(result.data.image_url);
       });
       
   }, [id]);
@@ -47,19 +45,16 @@ export default function UpdateCategory() {
   return (
     <div>
       <form onSubmit={Submit}>
-        <h1>Checklist</h1>
-        <label>Todo Name :</label>
-        <input type="text" placeholder="Todo Name" value={todo_name} onChange={(e) => setTodo_Name(e.target.value)} />
+        <h1>Update Category</h1>
+        <label>Category Name :</label>
+        <input type="text" placeholder="Category Name" value={category_name} onChange={(e) => setCategory_Name(e.target.value)} />
         <br />
-        <label>Task ID :</label>
-        <input type="number" placeholder="Task ID" value={task_id} onChange={(e) => setTask_id(e.target.value)}/>
+        <label>Image URL :</label>
+        <input type="text" placeholder="Image URL" value={image_url} onChange={(e) => setImage_url(e.target.value)}/>
         <br />
-        <label>Is Complete :</label>
-        <input type="number" placeholder="Is Complete" value={is_completed} onChange={(e) => setIs_Completed(e.target.value)}/>
-        <br />
-        <button type="submit">Add Checklist</button>
+        <button type="submit">Update</button>
       </form>
-      <Checklist />
+      <Category />
     </div>
   );
 }
