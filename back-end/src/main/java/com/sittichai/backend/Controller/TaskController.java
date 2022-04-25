@@ -33,9 +33,14 @@ public class TaskController {
   }
 
    
+  // @GetMapping("/tasklist/all")
+  // public List<Tasklist> getAll() {
+  //   return (List<Tasklist>) taskService.findAll();
+  // }
+  
   @GetMapping("/tasklist/all")
-  public List<Tasklist> getAll() {
-    return (List<Tasklist>) taskService.findAll();
+  public List<Tasklist> getAllStatus() {
+    return (List<Tasklist>) taskService.findAllStatus();
   }
 
    

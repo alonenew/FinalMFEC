@@ -25,6 +25,11 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+		public List<Tasklist> findAllStatus(){
+		List<Tasklist> findAllByStatus = taskRepository.findAllByOrderByStatusDesc();
+		return findAllByStatus;
+	}
+
     public Boolean createTodo(TaskRequest taskRequest) {
         Tasklist tasklist = new Tasklist();
         tasklist.setTask_name(taskRequest.getTask_name());
