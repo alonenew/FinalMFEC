@@ -6,31 +6,6 @@ export default function Category() {
 
   const dataCategory = CategoryAPI();
 
-  const UpdateCategory = (category_id) => {
-    window.location = "/categoryUpdate" + category_id;
-  };
-
-  const DeleteCategory = (category_id) => {
-    let data = {
-      category_id: category_id,
-    };
-    console.log(JSON.stringify(data));
-    fetch("http://localhost:8080/category/delete", {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result["description"] === "SUCCESS") {
-          window.location.href = "/";
-        }
-      });
-  };
-
   return (
     <div>
       <div className="task">

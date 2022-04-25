@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import CategoryAPI from "../API/CategoryAPI";
 import TaskList from "../page/TaskList";
 
 export default function UpdateTask() {
+  const dataCategory = CategoryAPI();
+
   const [taskName, setTaskName] = useState("");
-  const [category_id, setCategory_id] = useState("");
+  const [categoryid, setCategoryid] = useState("");
   const [startdate, setStartDate] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [note, setNote] = useState("");
@@ -17,26 +20,23 @@ export default function UpdateTask() {
       .then((res) => res.json())
       .then((result) => {
         setTaskName(result.data.task_name);
-        setCategory_id(result.data.category_id);
+        setCategoryid(result.data.category_id);
         setStartDate(result.data.start_date);
         setDueDate(result.data.due_date);
         setNote(result.data.note);
         setStatus(result.data.status);
       });
-      
   }, [id]);
-
-  
 
   const Submit = () => {
     var data = {
-      'task_id': id,
-      'task_name': taskName,
-      'category_id': category_id,
-      'start_date': startdate,
-      'due_date': dueDate,
-      'note': note,
-      'status': status,
+      task_id: id,
+      task_name: taskName,
+      category_id: categoryid,
+      start_date: startdate,
+      due_date: dueDate,
+      note: note,
+      status: status,
     };
     fetch("http://localhost:8080/tasklist/update", {
       method: "PATCH",
@@ -58,6 +58,7 @@ export default function UpdateTask() {
     <div>
       <form onSubmit={Submit}>
         <h1>Update TaskList {id}</h1>
+        <hr />
         <label>Task Name :</label>
         <input
           type="text"
@@ -66,14 +67,18 @@ export default function UpdateTask() {
           value={taskName}
           onChange={(e) => setTaskName(e.target.value)}
         />
-        <label>Category ID :</label>
-        <input
-          type="number"
-          id="category_id"
-          placeholder="Category ID"
-          value={category_id}
-          onChange={(e) => setCategory_id(e.target.value)}
-        />
+        <label>Category ID : </label>
+        <select
+          className="selectCategory"
+          onChange={(e) => setCategoryid(e.target.value)}
+        >
+          <option disabled selected>Select Category</option>
+          {dataCategory.map((option) => (
+            <option key={option.category_id} value={option.category_id}>
+              {option.category_id} : {option.category_name}
+            </option>
+          ))}
+        </select>
         <br />
         <label>Start Date :</label>
         <input
@@ -99,17 +104,17 @@ export default function UpdateTask() {
           onChange={(e) => setNote(e.target.value)}
         />
         <label>Status :</label>
-        <input
-          type="number"
-          id="status"
-          placeholder="Status"
-          min={1}
-          max={3}
-          value={status}
+        <select
+          className="selectCategory"
           onChange={(e) => setStatus(e.target.value)}
-        />
+        >
+                    <option disabled selected>Select Status</option>
+          <option value={1}>Complete</option>
+          <option value={2}>Doing</option>
+          <option value={3}>Not Started</option>
+        </select>
         <br />
-        <button type="submit">Update</button>
+        <button className="submit" type="submit">Update</button>
       </form>
       <TaskList />
     </div>

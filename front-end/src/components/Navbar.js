@@ -4,27 +4,22 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <>
-      <nav>
-        <ul>
+    <div className="container">
+        <ul> 
           <li>
             <Link to="/">HOME</Link>
           </li>
           <li>
-            Create
-            <ul>
-              <li>
-                <Link to="/taskcreate">Tasklist</Link>
-              </li>
-              <li>
-                <Link to="/checklistcreate">Checklist</Link>
-              </li>
-              <li>
-                <Link to="/Categorycreate">Category</Link>
-              </li>
-            </ul>
+            <Link to="/taskcreate">TASKLIST</Link>
+          </li>
+          <li>
+            <Link to="/checklistcreate">CHECKLIST</Link>
+          </li>
+          <li>
+            <Link to="/Categorycreate">CATEGORY</Link>
           </li>
         </ul>
-      </nav>
+      </div >
     </>
   );
 }

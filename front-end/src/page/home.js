@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Category from "./Category";
 import Checklist from "./Checklist";
 import TaskList from "./TaskList";
 export default class Home extends Component {

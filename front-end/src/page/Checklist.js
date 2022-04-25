@@ -5,6 +5,7 @@ import ChecklistAPI from "../API/ChecklistAPI";
 export default function Checklist() {
 
   const dataChecklist = ChecklistAPI();
+
   console.log(dataChecklist);
 
   const UpdateChecklist = (todo_id) => {
@@ -50,9 +51,10 @@ export default function Checklist() {
               <tr key={checklist.todo_id}>
                 <td>{checklist.todo_id}</td>
                 <td>{checklist.todo_name}</td>
+                {/* {dataTask.map((tasks) => ( <td key={tasks.task_id}>{tasks.task_name}</td> ))} */}
+
                 <td>{checklist.task_id}</td>
-                {checklist.is_completed === 0 && <td>False</td>}
-                {checklist.is_completed === 1 && <td>Completed</td>}
+                <td>{checklist.is_completed === 1 ? 'Success' : 'Fail'}</td>
                 <td>
                   <button
                     className="update"

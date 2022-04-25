@@ -1,11 +1,14 @@
-import React from "react";
-import CategoryAPI from "../API/CategoryAPI";
+import React from 'react';
+//import CategoryAPI from '../API/CategoryAPI';
+
 import TaskAPI from "../API/TaskAPI";
 
 export default function TaskList() {
 
   const dataTask = TaskAPI();
-  const dataCategory = CategoryAPI();
+
+  //const dataCategory = CategoryAPI();
+
 
   const UpdateTask = (task_id) => {
     window.location = '/taskupdate'+task_id
@@ -43,7 +46,6 @@ export default function TaskList() {
             <th>Task ID</th>
             <th>Task Name</th>
             <th>Catagory ID</th>
-            <th>Category Name</th>
             <th>Start Date</th>
             <th>Due Date</th>
             <th>Note</th>
@@ -56,9 +58,6 @@ export default function TaskList() {
               <td>{tasks.task_id}</td>
               <td>{tasks.task_name}</td>
               <td>{tasks.category_id}</td>
-              {dataCategory.map((category) => (
-                <td key={category.category_id}>{category.category_name}</td>
-            ))}
               <td>{tasks.start_date}</td>
               <td>{tasks.due_date}</td>
               <td>{tasks.note}</td>

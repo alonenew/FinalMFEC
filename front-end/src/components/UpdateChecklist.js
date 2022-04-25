@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import TaskAPI from "../API/TaskAPI";
 import Checklist from "../page/Checklist";
 
 export default function UpdateChecklist() {
   const [todo_name, setTodo_Name] = useState("");
   const [task_id, setTask_id] = useState("");
   const [is_completed, setIs_Completed] = useState("");
+
+  const dataTask = TaskAPI();
 
   const { id } = useParams();
 
@@ -49,16 +52,34 @@ export default function UpdateChecklist() {
     <div>
       <form onSubmit={Submit}>
         <h1>Update Checklist</h1>
+        <hr />
         <label>Todo Name :</label>
         <input type="text" placeholder="Todo Name" value={todo_name} onChange={(e) => setTodo_Name(e.target.value)} />
         <br />
-        <label>Task ID :</label>
-        <input type="number" placeholder="Task ID" value={task_id} onChange={(e) => setTask_id(e.target.value)}/>
+        <label>Task Name :</label>
+        <select
+          className="selectCategory"
+          onChange={(e) => setTask_id(e.target.value)}
+        >
+                    <option disabled selected>Select Task</option>
+          {dataTask.map((option) => (
+            <option key={option.task_id} value={option.task_id}>
+              {option.task_id} : {option.task_name}
+            </option>
+          ))}
+        </select>
         <br />
         <label>Is Complete :</label>
-        <input type="number" placeholder="Fail = 0, Success = 1" min={0} max={1} value={is_completed} onChange={(e) => setIs_Completed(e.target.value)}/>
+        <select
+          className="selectCategory"
+          onChange={(e) => setIs_Completed(e.target.value)}
+        >
+                    <option disabled selected>Select Is Completed</option>
+          <option value={0}>Fail</option>
+          <option value={1}>Success</option>
+        </select>
         <br />
-        <button type="submit">Update</button>
+        <button className="submit" type="submit">Update</button>
       </form>
       <Checklist />
     </div>

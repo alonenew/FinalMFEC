@@ -52,7 +52,7 @@ export default function UpdateCategory() {
         <label>Image URL :</label>
         <input type="text" placeholder="Image URL" value={image_url} onChange={(e) => setImage_url(e.target.value)}/>
         <br />
-        <button type="submit">Update</button>
+        <button className="submit" type="submit">Update</button>
       </form>
       <Category />
     </div>

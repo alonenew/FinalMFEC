@@ -4,11 +4,11 @@ import Checklist from "../page/Checklist";
 
 export default function CreateChecklist() {
 
-    const dataTask = TaskAPI;
+  const dataTask = TaskAPI();
 
   const [todo_name, setTodo_name] = useState();
-  const [task_id, setCategory_id] = useState();
-  const [is_completed, setStartDate] = useState();
+  const [task_id, setTask_id] = useState();
+  const [is_completed, setIs_Completed] = useState();
 
   const Submit = (event) => {
     event.preventDefault();
@@ -42,13 +42,30 @@ export default function CreateChecklist() {
         <label>Todo Name :</label>
         <input type="text" placeholder="Todo Name" onChange={(e) => setTodo_name(e.target.value)} />
         <br />
-        <label>Task ID :</label>
-        <input type="number" placeholder="Task ID" onChange={(e) => setCategory_id(e.target.value)}/>
+        <label>Task Name :</label>
+        <select
+          className="selectCategory"
+          onChange={(e) => setTask_id(e.target.value)}
+        >
+                    <option disabled selected>Select Task</option>
+          {dataTask.map((option) => (
+            <option key={option.task_id} value={option.task_id}>
+              {option.task_id} : {option.task_name}
+            </option>
+          ))}
+        </select>
         <br />
         <label>Is Complete :</label>
-        <input type="number" placeholder="Fail = 0, Success = 1" min={0} max={1} onChange={(e) => setStartDate(e.target.value)}/>
+        <select
+          className="selectCategory"
+          onChange={(e) => setIs_Completed(e.target.value)}
+        >
+                    <option disabled selected>Select Is Completed</option>
+          <option value="0">Fail</option>
+          <option value="1">Success</option>
+        </select>
         <br />
-        <button type="submit">Add Checklist</button>
+        <button className="submit" type="submit">Add Checklist</button>
       </form>
       <Checklist />
     </div>
