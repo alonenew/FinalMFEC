@@ -169,3 +169,21 @@ form button{
   background-color: blue;
   color: white;
 }
+
+
+.checklist {
+	background-color:skyblue;
+	border-radius:15px;
+	border: none;
+	cursor:pointer;
+	color:#ffffff;
+	padding:10px 10px;
+  width: 70px;
+}
+.checklist:hover {
+	background-color:violet;
+}
+.checklist:active {
+	position:relative;
+	top:1px;
+}

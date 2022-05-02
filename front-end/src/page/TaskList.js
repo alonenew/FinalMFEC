@@ -50,6 +50,7 @@ export default function TaskList() {
             <th>Due Date</th>
             <th>Note</th>
             <th>Status</th>
+            <th>Checklist</th>
             <th>Update</th>
             <th>Delete</th>
           </tr>
@@ -64,6 +65,9 @@ export default function TaskList() {
               {tasks.status === 1 && <td>Completed</td>}
               {tasks.status === 2 && <td>Doing</td>}
               {tasks.status === 3 && <td>Not Started</td>}
+              <td>
+                <button className="checklist" onClick={() => UpdateTask(tasks.task_id)}>Update</button>
+              </td>
               <td>
                 <button className="update" onClick={() => UpdateTask(tasks.task_id)}>Update</button>
               </td>
