@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import Checklist from "./Checklist";
 import TaskList from "./TaskList";
 export default class Home extends Component {
-  state = {  } 
-  render() { 
+  state = {};
+  render() {
     return (
       <div>
-      <TaskList />
-      <br />
-      <Checklist />
-    </div>
+        <TaskList />
+      </div>
     );
   }
 }
- 

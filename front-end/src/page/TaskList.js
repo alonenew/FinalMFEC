@@ -1,44 +1,49 @@
-import React from 'react';
+import React from "react";
 //import CategoryAPI from '../API/CategoryAPI';
 
 import TaskAPI from "../API/TaskAPI";
 
 export default function TaskList() {
-
   const dataTask = TaskAPI();
 
   //const dataCategory = CategoryAPI();
-
+  const createTask = () => {
+    window.location = "/taskcreate"
+  }
 
   const UpdateTask = (task_id) => {
-    window.location = '/taskupdate'+task_id
-  }
+    window.location = "/taskupdate" + task_id;
+  };
 
   const DeleteTask = (task_id) => {
     let data = {
-      "task_id": task_id,
+      task_id: task_id,
     };
     console.log(JSON.stringify(data));
-    fetch('http://localhost:8080/tasklist/delete', {
+    fetch("http://localhost:8080/tasklist/delete", {
       method: "DELETE",
       headers: {
-        Accept:"application/json",
-        'Content-Type':"application/json"
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }).then((res) => res.json())
-        .then(
-            (result) => {
-              if (result['description'] === 'SUCCESS') {
-                window.location.href = '/';
-              }
-            }
-    );
-  }
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result["description"] === "SUCCESS") {
+          window.location.href = "/";
+        }
+      });
+  };
 
   return (
     <div className="task">
-      <h1>Task List</h1>
+      <header>
+        <div></div>
+        <h1>Task List</h1>
+        <button className="bcreate" onClick={createTask}>สร้าง</button>
+      </header>
+
       <hr />
       <table className="tabletask">
         <tbody>
@@ -66,13 +71,28 @@ export default function TaskList() {
               {tasks.status === 2 && <td>Doing</td>}
               {tasks.status === 3 && <td>Not Started</td>}
               <td>
-                <button className="checklist" onClick={() => UpdateTask(tasks.task_id)}>Update</button>
+                <button
+                  className="checklist"
+                  onClick={() => UpdateTask(tasks.task_id)}
+                >
+                  Checklist
+                </button>
               </td>
               <td>
-                <button className="update" onClick={() => UpdateTask(tasks.task_id)}>Update</button>
+                <button
+                  className="update"
+                  onClick={() => UpdateTask(tasks.task_id)}
+                >
+                  Update
+                </button>
               </td>
               <td>
-                <button className="delete" onClick={() => DeleteTask(tasks.task_id)}>Delete</button>
+                <button
+                  className="delete"
+                  onClick={() => DeleteTask(tasks.task_id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

@@ -10,9 +10,6 @@ export default function Navbar() {
             <Link to="/">HOME</Link>
           </li>
           <li>
-            <Link to="/taskcreate">TASKLIST</Link>
-          </li>
-          <li>
             <Link to="/checklistcreate">CHECKLIST</Link>
           </li>
           <li>
