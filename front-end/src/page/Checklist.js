@@ -6,32 +6,31 @@ export default function Checklist() {
 
   const dataChecklist = ChecklistAPI();
 
-  console.log(dataChecklist);
-
   const UpdateChecklist = (todo_id) => {
     window.location = "/checklistUpdate" + todo_id;
   };
 
   const DeleteChecklist = (todo_id) => {
-    let data = {
-      todo_id: todo_id,
-    };
-    console.log(JSON.stringify(data));
-    fetch("http://localhost:8080/checklist/delete", {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result["description"] === "SUCCESS") {
-          window.location.href = "/";
-        }
-      });
+    if (window.confirm('Are you sure you want to delete Checklist ID '+todo_id)){
+      let data = {
+        todo_id: todo_id,
+      };
+      console.log(JSON.stringify(data));
+      fetch("http://localhost:8080/checklist/delete", {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json());
+    }
+    
   };
+
+
+
   return (
     <div>
       <div className="task">
@@ -42,7 +41,7 @@ export default function Checklist() {
             <tr>
               <th>Checklist ID</th>
               <th>Todo Name</th>
-              <th>Task ID</th>
+              <th>Task Name</th>
               <th>Is Complete</th>
               <th>Update</th>
               <th>Delete</th>
@@ -51,10 +50,9 @@ export default function Checklist() {
               <tr key={checklist.todo_id}>
                 <td>{checklist.todo_id}</td>
                 <td>{checklist.todo_name}</td>
-                {/* {dataTask.map((tasks) => ( <td key={tasks.task_id}>{tasks.task_name}</td> ))} */}
-
-                <td>{checklist.task_id}</td>
-                <td>{checklist.is_completed === 1 ? 'Success' : 'Fail'}</td>
+                <td>{checklist.task_name}</td>
+                {checklist.is_completed === 1 && <td className="success">Success</td>}
+                {checklist.is_completed === 0 && <td>Fail</td>}
                 <td>
                   <button
                     className="update"

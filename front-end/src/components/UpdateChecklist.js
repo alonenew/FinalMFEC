@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import TaskAPI from "../API/TaskAPI";
-import Checklist from "../page/Checklist";
 
 export default function UpdateChecklist() {
   const [todo_name, setTodo_Name] = useState("");
   const [task_id, setTask_id] = useState("");
+  const [task_name, setTask_Name] = useState("");
   const [is_completed, setIs_Completed] = useState("");
 
-  const dataTask = TaskAPI();
 
   const { id } = useParams();
 
@@ -18,6 +16,7 @@ export default function UpdateChecklist() {
       .then((result) => {
         setTodo_Name(result.data.todo_name);
         setTask_id(result.data.task_id);
+        setTask_Name(result.data.task_name);
         setIs_Completed(result.data.is_completed);
       });
       
@@ -47,30 +46,20 @@ export default function UpdateChecklist() {
         }
       });
   };
-
   return (
     <div>
       <form onSubmit={Submit}>
         <h1>Update Checklist</h1>
         <hr />
+        <label>Task Name :</label>
+        <input type="text" placeholder="Task Name" value={task_name} disabled/>
+        <br />
         <label>Todo Name :</label>
         <input type="text" placeholder="Todo Name" value={todo_name} onChange={(e) => setTodo_Name(e.target.value)} />
         <br />
-        <label>Task Name :</label>
-        <select
-          className="selectCategory"
-          onChange={(e) => setTask_id(e.target.value)}
-        >
-                    <option disabled selected>Select Task</option>
-          {dataTask.map((option) => (
-            <option key={option.task_id} value={option.task_id}>
-              {option.task_id} : {option.task_name}
-            </option>
-          ))}
-        </select>
-        <br />
         <label>Is Complete :</label>
         <select
+        value={is_completed}
           className="selectCategory"
           onChange={(e) => setIs_Completed(e.target.value)}
         >
@@ -81,7 +70,7 @@ export default function UpdateChecklist() {
         <br />
         <button className="submit" type="submit">Update</button>
       </form>
-      <Checklist />
+
     </div>
   );
 }

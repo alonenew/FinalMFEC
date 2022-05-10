@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CategoryAPI from "../API/CategoryAPI";
-import TaskList from "../page/TaskList";
 
 export default function UpdateTask() {
   const dataCategory = CategoryAPI();
 
-  const [taskName, setTaskName] = useState("");
-  const [categoryid, setCategoryid] = useState("");
-  const [startdate, setStartDate] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  const [note, setNote] = useState("");
-  const [status, setStatus] = useState("");
+  const [taskName, setTaskName] = useState([]);
+  const [categoryid, setCategory_Id] = useState([]);
+  const [icon_Url, setIcon_Url] = useState([]);
+  const [startdate, setStartDate] = useState([]);
+  const [dueDate, setDueDate] = useState([]);
+  const [note, setNote] = useState([]);
+  const [status, setStatus] = useState([]);
 
   const { id } = useParams();
 
@@ -20,7 +20,8 @@ export default function UpdateTask() {
       .then((res) => res.json())
       .then((result) => {
         setTaskName(result.data.task_name);
-        setCategoryid(result.data.category_id);
+        setCategory_Id(result.data.category_id);
+        setIcon_Url(result.data.icon_url);
         setStartDate(result.data.start_date);
         setDueDate(result.data.due_date);
         setNote(result.data.note);
@@ -46,13 +47,15 @@ export default function UpdateTask() {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result["description"] === "SUCCESS") {
-          window.location.href = "/";
-        }
-      });
+    .then((res) => res.json())
+    .then((result) => {
+      if (result["description"] === "SUCCESS") {
+        window.location.href = "/";
+      }
+    });
   };
+
+
 
   return (
     <div>
@@ -69,13 +72,13 @@ export default function UpdateTask() {
         />
         <label>Category ID : </label>
         <select
+          value={categoryid}
           className="selectCategory"
-          onChange={(e) => setCategoryid(e.target.value)}
+          onChange={(e) => setCategory_Id(e.target.value)}
         >
-          <option disabled selected>Select Category</option>
           {dataCategory.map((option) => (
             <option key={option.category_id} value={option.category_id}>
-              {option.category_id} : {option.category_name}
+              {option.category_name}
             </option>
           ))}
         </select>
@@ -105,10 +108,10 @@ export default function UpdateTask() {
         />
         <label>Status :</label>
         <select
+          defaultValue={status}
           className="selectCategory"
           onChange={(e) => setStatus(e.target.value)}
         >
-                    <option disabled selected>Select Status</option>
           <option value={1}>Complete</option>
           <option value={2}>Doing</option>
           <option value={3}>Not Started</option>
@@ -116,7 +119,32 @@ export default function UpdateTask() {
         <br />
         <button className="submit" type="submit">Update</button>
       </form>
-      <TaskList />
+      <div className="task">
+      <table className="tabletask">
+        <tbody>
+          <tr>
+            <th>Task ID</th>
+            <th>Task Name</th>
+            <th>Icon Category</th>
+            <th>Start Date</th>
+            <th>Due Date</th>
+            <th>Note</th>
+            <th>Status</th>
+          </tr>
+            <tr>
+              <td>{id}</td>
+              <td>{taskName}</td>
+              <td><img src={icon_Url} width="100px" height="100px" /></td>
+              <td>{startdate}</td>
+              <td>{dueDate}</td>
+              <td>{note}</td>
+              {status === 1 && <td>Completed</td>}
+              {status === 2 && <td>Doing</td>}
+              {status === 3 && <td>Not Started</td>}
+            </tr>
+        </tbody>
+      </table>
+      </div>
     </div>
   );
 }

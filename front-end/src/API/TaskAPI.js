@@ -4,7 +4,7 @@ export default function TaskAPI() {
   const [dataTask, setDataTask] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/tasklist/all?sort=status,desc")
+    fetch("http://localhost:8080/tasklist/all")
       .then((res) => res.json())
       .then((dataTask) => setDataTask(dataTask));
   }, []);

@@ -82,7 +82,7 @@ form button{
 
 .task{
   margin: auto;
-  width: 1000px;
+  width: 1200px;
 }
 
 .tabletask {
@@ -194,15 +194,27 @@ header{
 }
 
 .bcreate{
-  background-color: #04AA6D;
+  background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
   border: 0;
   border-radius: 15px;
   width: 75px;
   height: 40px;
   margin: auto 0;
   color: white;
+  box-shadow: 3px 4px 0px 0px #1564ad;
 }
 .bcreate:hover{
-  background-color: aqua;
+  background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
   color: black;
+}
+
+.img_url{
+  width: 100px;
+  height: 100px;
+}
+
+.success{
+  text-decoration: line-through;
 }

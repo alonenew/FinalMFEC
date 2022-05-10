@@ -1,47 +1,55 @@
 import React from "react";
-//import CategoryAPI from '../API/CategoryAPI';
+import Dialog from "../components/dialogDelete";
 
 import TaskAPI from "../API/TaskAPI";
 
 export default function TaskList() {
   const dataTask = TaskAPI();
 
+
   //const dataCategory = CategoryAPI();
   const createTask = () => {
     window.location = "/taskcreate"
+  }
+
+  const createChecklist = (task_id) => {
+    window.location = "/checklistcreate"+task_id
   }
 
   const UpdateTask = (task_id) => {
     window.location = "/taskupdate" + task_id;
   };
 
-  const DeleteTask = (task_id) => {
-    let data = {
-      task_id: task_id,
-    };
-    console.log(JSON.stringify(data));
-    fetch("http://localhost:8080/tasklist/delete", {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result["description"] === "SUCCESS") {
-          window.location.href = "/";
-        }
-      });
+  const DeleteTask = (task_id,task_name) => {
+    if (window.confirm('Are you sure you want to delete Task ID '+task_name))  {
+      let data = {
+        task_id: task_id,
+      };
+      fetch("http://localhost:8080/tasklist/delete", {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result["description"] === "SUCCESS") {
+            window.location.href = "/";
+          }
+        });
+    }
+    
   };
+
 
   return (
     <div className="task">
       <header>
         <div></div>
         <h1>Task List</h1>
-        <button className="bcreate" onClick={createTask}>สร้าง</button>
+        <button className="bcreate" onClick={createTask}>Create</button>
       </header>
 
       <hr />
@@ -50,7 +58,7 @@ export default function TaskList() {
           <tr>
             <th>Task ID</th>
             <th>Task Name</th>
-            <th>Catagory ID</th>
+            <th>Icon Category</th>
             <th>Start Date</th>
             <th>Due Date</th>
             <th>Note</th>
@@ -63,7 +71,7 @@ export default function TaskList() {
             <tr key={tasks.task_id}>
               <td>{tasks.task_id}</td>
               <td>{tasks.task_name}</td>
-              <td>{tasks.category_id}</td>
+              <td><img src={tasks.icon_url} width="100px" height="100px" /></td>
               <td>{tasks.start_date}</td>
               <td>{tasks.due_date}</td>
               <td>{tasks.note}</td>
@@ -73,7 +81,7 @@ export default function TaskList() {
               <td>
                 <button
                   className="checklist"
-                  onClick={() => UpdateTask(tasks.task_id)}
+                  onClick={() => createChecklist(tasks.task_id)}
                 >
                   Checklist
                 </button>
@@ -89,7 +97,7 @@ export default function TaskList() {
               <td>
                 <button
                   className="delete"
-                  onClick={() => DeleteTask(tasks.task_id)}
+                  onClick={() => DeleteTask(tasks.task_id,tasks.task_name)}
                 >
                   Delete
                 </button>

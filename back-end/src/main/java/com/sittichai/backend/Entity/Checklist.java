@@ -17,6 +17,9 @@ public class Checklist {
     @Column(name = "task_id")
     private Integer task_id;
 
+    @Transient()
+    private String task_name;
+
     @Column(name = "is_completed")
     private Integer is_completed;
 
@@ -44,6 +47,14 @@ public class Checklist {
 
     public void setTask_id(Integer task_id) {
         this.task_id = task_id;
+    }
+    
+    public String getTask_name() {
+        return task_name;
+    }
+
+    public void setTask_name(String task_name) {
+        this.task_name = task_name;
     }
 
     public Integer getIs_completed() {

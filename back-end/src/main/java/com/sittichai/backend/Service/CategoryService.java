@@ -28,6 +28,7 @@ public class CategoryService {
     public Boolean createTodo(CategoryRequest categoryRequest) {
         Category category = new Category();
         category.setCategory_name(categoryRequest.getCategory_name());
+        category.setIcon_url(categoryRequest.getIcon_url());
         category.setImage_url(categoryRequest.getImage_url());
         return jdbcCategoryRepository.createCategory(category);
     }

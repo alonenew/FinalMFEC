@@ -23,11 +23,15 @@ public class JdbcChecklistRepository {
             "INSERT INTO checklist (todo_name,is_completed,task_id) VALUES (:todo_name, :is_completed, (SELECT t.task_id From task t WHERE t.task_id = :task_id))")
             .toString();
 
-    private static final String SELECT_ALL = "SELECT * FROM checklist";
+    private static final String SELECT_ALL = "SELECT c.todo_id,c.todo_name,t.task_name,c.is_completed FROM checklist c INNER JOIN task t ON c.task_id=t.task_id order by todo_id asc";
 
-    private static final String SELECT_VALUE = new StringBuilder(
-            "SELECT * FROM checklist")
+    private static final String SELECT_TODO = new StringBuilder(
+            "SELECT c.todo_id,t.task_id,c.todo_name,t.task_name,c.is_completed FROM checklist c INNER JOIN task t ON c.task_id=t.task_id Where todo_id=:todo_id")
             .toString();
+
+    private static final String SELECT_TASK = new StringBuilder(
+        "SELECT c.todo_id,c.todo_name,t.task_name,c.is_completed FROM checklist c INNER JOIN task t ON c.task_id=t.task_id Where t.task_id=:task_id")
+        .toString();
 
     private static final String UPDATE_VALUE = new StringBuilder(
             "UPDATE checklist SET todo_name = :todo_name, task_id = :task_id, is_completed = :is_completed WHERE todo_id = :todo_id")
@@ -54,11 +58,24 @@ public class JdbcChecklistRepository {
     }
 
 
-    public Checklist findAll() {
+    public List<Checklist> findAll() {
+        List<Checklist> total = null;
+        try {
+            MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+            total = template.query(SELECT_ALL,mapSqlParameterSource, new BeanPropertyRowMapper<>(Checklist.class));
+        } catch (Exception e) {
+            throw new CommonException(HttpStatus.OK, AppConstant.ERROR_CODE_002, AppConstant.ERRORS_DESCRIPTION_002);
+        }
+        return total;
+    }
+
+    public Checklist findById(Integer todo_id) {
         List<Checklist> total = null;
         Checklist checklist = null;
         try {
-            total = template.query(SELECT_ALL, new BeanPropertyRowMapper<>(Checklist.class));
+            MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
+                    .addValue("todo_id", todo_id);
+            total = template.query(SELECT_TODO, mapSqlParameterSource, new BeanPropertyRowMapper<>(Checklist.class));
             if ((total != null) && (!total.isEmpty())) {
                 checklist = total.get(0);
             }
@@ -68,20 +85,16 @@ public class JdbcChecklistRepository {
         return checklist;
     }
 
-    public Checklist findById(Integer todo_id) {
+    public List<Checklist> findByTaskId(Integer task_id) {
         List<Checklist> total = null;
-        Checklist checklist = null;
         try {
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
-                    .addValue("todo_id", todo_id);
-            total = template.query(SELECT_VALUE, mapSqlParameterSource, new BeanPropertyRowMapper<>(Checklist.class));
-            if ((total != null) && (!total.isEmpty())) {
-                checklist = total.get(0);
-            }
+                    .addValue("task_id", task_id);
+            total = template.query(SELECT_TASK, mapSqlParameterSource, new BeanPropertyRowMapper<>(Checklist.class));
         } catch (Exception e) {
             throw new CommonException(HttpStatus.OK, AppConstant.ERROR_CODE_002, AppConstant.ERRORS_DESCRIPTION_002);
         }
-        return checklist;
+        return total;
     }
 
     public Boolean update(Checklist checklist) {

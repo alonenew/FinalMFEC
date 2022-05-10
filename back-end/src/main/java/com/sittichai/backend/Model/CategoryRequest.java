@@ -4,6 +4,7 @@ public class CategoryRequest {
     private Integer category_id;
     private String category_name;
     private String image_url;
+    private String icon_url;
     
     public Integer getCategory_id() {
         return category_id;
@@ -22,6 +23,12 @@ public class CategoryRequest {
     }
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+    public String getIcon_url() {
+        return icon_url;
+    }
+    public void setIcon_url(String icon_url) {
+        this.icon_url = icon_url;
     }
 
 

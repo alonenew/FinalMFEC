@@ -21,14 +21,10 @@ public class TaskService {
     @Autowired
     private JdbcTaskRepository jdbcTaskRepository;
 
-    public List<Tasklist> findAll() {
-        return taskRepository.findAll();
-    }
 
-		public List<Tasklist> findAllStatus(){
-		List<Tasklist> findAllByStatus = taskRepository.findAllByOrderByStatusDesc();
-		return findAllByStatus;
-	}
+	public List<Tasklist> findAllTask() {
+        return jdbcTaskRepository.findAll();
+    }
 
     public Boolean createTodo(TaskRequest taskRequest) {
         Tasklist tasklist = new Tasklist();
@@ -45,6 +41,7 @@ public class TaskService {
     public Tasklist retrieved(Integer id) {
 		return jdbcTaskRepository.findById(id);
 	}
+	
 
     public Tasklist update(TaskRequest request) {
 		Optional<Tasklist> optionalUserOptional = taskRepository.findById(request.getTask_id());
@@ -53,6 +50,7 @@ public class TaskService {
 		}
 		Tasklist existed = optionalUserOptional.get();
 		existed.setTask_id(request.getTask_id());
+		existed.setTask_name(request.getTask_name());
 		existed.setCategory_id(request.getCategory_id());
 		existed.setStart_date(request.getStart_date());
 		existed.setDue_date(request.getDue_date());

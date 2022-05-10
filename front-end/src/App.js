@@ -14,6 +14,7 @@ import UpdateChecklist from "./components/UpdateChecklist";
 
 import CreateCategory from "./components/CreateCategory";
 import UpdateCategory from "./components/UpdateCategory";
+import Checklist from "./page/Checklist";
 
 export default function App() {
   return (
@@ -22,17 +23,13 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          
-          <Route exact path="/taskcreate" element={<CreateTask />} />
-          <Route exact path="/taskupdate:id" element={<UpdateTask />} />
-          <Route exact path="/checklistcreate" element={<CreateChecklist />} />
-          <Route
-            exact
-            path="/checklistupdate:id"
-            element={<UpdateChecklist />}
-          />
-          <Route exact path="/categorycreate" element={<CreateCategory />} />
-          <Route exact path="/categoryupdate:id" element={<UpdateCategory />} />
+          <Route path="/taskcreate" element={<CreateTask />} />
+          <Route path="/taskupdate:id" element={<UpdateTask />} />
+          <Route path="/checklist" element={<Checklist />} />
+          <Route path="/checklistcreate:id" element={<CreateChecklist />} />
+          <Route path="/checklistupdate:id" element={<UpdateChecklist />}/>
+          <Route path="/categorycreate" element={<CreateCategory />} />
+          <Route path="/categoryupdate:id" element={<UpdateCategory />} />
         </Routes>
       </Router>
     </div>

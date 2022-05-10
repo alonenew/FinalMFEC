@@ -22,8 +22,8 @@ public class ChecklistService {
     @Autowired
     private JdbcChecklistRepository jdbcChecklistRepository;
 
-    public List<Checklist> findAll() {
-        return checklistRepository.findAll();
+    public List<Checklist> findAllChecklists() {
+        return jdbcChecklistRepository.findAll();
     }
 
     public Boolean createChecklist(ChecklistRequest checklistRequest) {
@@ -37,6 +37,10 @@ public class ChecklistService {
 
     public Checklist retrieved(Integer id) {
 		return jdbcChecklistRepository.findById(id);
+	}
+	
+	public List<Checklist> retrievedTask(Integer id) {
+		return jdbcChecklistRepository.findByTaskId(id);
 	}
 
     public Checklist update(ChecklistRequest checklistRequest) {

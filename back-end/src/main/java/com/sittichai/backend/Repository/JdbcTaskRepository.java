@@ -23,14 +23,15 @@ public class JdbcTaskRepository {
             "INSERT INTO task (task_name,category_id,start_date,due_date,note,status) VALUES (:task_name, :category_id, :start_date, :due_date, :note, :status)")
             .toString();
 
-    private static final String SELECT_ALL = "SELECT * FROM task ORDER BY status DESC";
-
+    private static final String SELECT_ALL = new StringBuilder("select t.task_id, t.task_name,t.category_id,c.icon_url, t.start_date, t.due_date, t.note , t.status from task t inner join category c  where t.category_id=c.category_id order by t.status desc")
+                                                               .toString();
+    
     private static final String SELECT_VALUE = new StringBuilder(
-            "SELECT * FROM task WHERE task_id = :task_id")
+            "select t.task_id, t.task_name,t.category_id,c.icon_url, t.start_date, t.due_date, t.note , t.status from task t inner join category c ON c.category_id = t.category_id WHERE t.task_id = :task_id")
             .toString();
 
     private static final String UPDATE_VALUE = new StringBuilder(
-            "UPDATE tasks SET task_name = :task_name, category_id = :category_id, start_date = :start_date,due_date = :due_date,note = :note, status = :status WHERE task_id = :task_id")
+            "UPDATE task SET task_name = :task_name, category_id = :category_id, start_date = :start_date,due_date = :due_date,note = :note, status = :status WHERE task_id = :task_id")
             .toString();
 
     private static final String DELETE_VALUE = new StringBuilder(
@@ -57,18 +58,15 @@ public class JdbcTaskRepository {
     }
 
 
-    public Tasklist findAll() {
+    public List<Tasklist> findAll() {
         List<Tasklist> total = null;
-        Tasklist tasklist = null;
         try {
-            total = template.query(SELECT_ALL, new BeanPropertyRowMapper<>(Tasklist.class));
-            if ((total != null) && (!total.isEmpty())) {
-                tasklist = total.get(0);
-            }
+            MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+            total = template.query(SELECT_ALL, mapSqlParameterSource, new BeanPropertyRowMapper<>(Tasklist.class));
         } catch (Exception e) {
             throw new CommonException(HttpStatus.OK, AppConstant.ERROR_CODE_002, AppConstant.ERRORS_DESCRIPTION_002);
         }
-        return tasklist;
+        return total;
     }
 
     public Tasklist findById(Integer task_id) {

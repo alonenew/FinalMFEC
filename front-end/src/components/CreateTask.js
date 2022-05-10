@@ -60,7 +60,7 @@ export default function CreateTask() {
             </option>
           {dataCategory.map((option) => (
             <option key={option.category_id} value={option.category_id}>
-              {option.category_id} : {option.category_name}
+              {option.category_name}
             </option>
           ))}
         </select>

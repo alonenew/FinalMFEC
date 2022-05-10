@@ -5,6 +5,7 @@ public class ChecklistRequest {
     private Integer todo_id;
     private String todo_name;
     private Integer task_id;
+    private String task_name;    
     private Integer is_completed;
     public Integer getTodo_id() {
         return todo_id;
@@ -23,6 +24,12 @@ public class ChecklistRequest {
     }
     public void setTask_id(Integer task_id) {
         this.task_id = task_id;
+    }
+    public String getTask_name() {
+        return task_name;
+    }
+    public void setTask_name(String task_name) {
+        this.task_name = task_name;
     }
     public Integer getIs_completed() {
         return is_completed;

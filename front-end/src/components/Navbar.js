@@ -10,7 +10,7 @@ export default function Navbar() {
             <Link to="/">HOME</Link>
           </li>
           <li>
-            <Link to="/checklistcreate">CHECKLIST</Link>
+            <Link to="/checklist">CHECKLIST</Link>
           </li>
           <li>
             <Link to="/Categorycreate">CATEGORY</Link>

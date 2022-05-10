@@ -35,9 +35,14 @@ public class ChecklistController {
    
   @GetMapping("/checklist/all")
   public List<Checklist> getAll() {
-    return (List<Checklist>) checklistService.findAll();
+    return (List<Checklist>) checklistService.findAllChecklists();
   }
-   
+
+  @GetMapping("/checklist/searchtask/{id}")
+  public List<Checklist> gettask(@PathVariable Integer id) {
+    return (List<Checklist>) checklistService.retrievedTask(id);
+    
+  }
   @GetMapping("/checklist/search/{id}")
   public ResponseEntity<SuccessResponse<Checklist>> get(@PathVariable Integer id) {
     return ResponseEntity.ok(new SuccessResponse<Checklist>(checklistService.retrieved(id)));

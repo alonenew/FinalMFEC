@@ -20,17 +20,17 @@ public class JdbcCategoryRepository {
     private NamedParameterJdbcTemplate template;
 
     private static final String INSERT_CATEGORY = new StringBuilder(
-            "INSERT INTO category (category_name, image_url) VALUES (:category_name, :image_url)")
+            "INSERT INTO category (icon_url,category_name, image_url) VALUES (:icon_url,:category_name, :image_url)")
             .toString();
 
-    private static final String SELECT_ALL = "SELECT * FROM category";
+    private static final String SELECT_ALL = "SELECT icon_url, category_name, image_url FROM category";
 
     private static final String SELECT_VALUE = new StringBuilder(
-            "SELECT * FROM category")
+            "SELECT icon_url, category_name, image_url FROM category")
             .toString();
 
     private static final String UPDATE_VALUE = new StringBuilder(
-            "UPDATE category SET category_name = :category_name, image_url = :image_url WHERE category_id = :category_id")
+            "UPDATE category SET icon_url = :icon_url, category_name = :category_name, image_url = :image_url, icon_url = :icon_url WHERE category_id = :category_id")
             .toString();
 
     private static final String DELETE_VALUE = new StringBuilder(
@@ -41,7 +41,8 @@ public class JdbcCategoryRepository {
         try {
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                     .addValue("category_name", category.getCategory_name())
-                    .addValue("image_url", category.getImage_url());
+                    .addValue("image_url", category.getImage_url())
+                    .addValue("icon_url", category.getIcon_url());
             Integer rowAffected = template.update(INSERT_CATEGORY, mapSqlParameterSource);
             if (rowAffected > 0) {
                 return Boolean.TRUE;
@@ -87,6 +88,7 @@ public class JdbcCategoryRepository {
         try {
             MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                     .addValue("category_id", category.getCategory_id())
+                    .addValue("icon_url", category.getIcon_url())
                     .addValue("category_name", category.getCategory_name())
                     .addValue("image_url", category.getImage_url());
             Integer rowAffected = template.update(UPDATE_VALUE, mapSqlParameterSource);

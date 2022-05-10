@@ -17,6 +17,9 @@ public class Tasklist {
     @Column(name="category_id")
     private Integer category_id;
 
+    @Transient()
+    private String icon_url;
+
     @Column(name = "start_date")
     private String start_date;
 
@@ -30,6 +33,14 @@ public class Tasklist {
     private Integer status;
 
     public Tasklist() {}
+
+    public String getIcon_url() {
+        return icon_url;
+    }
+
+    public void setIcon_url(String icon_url) {
+        this.icon_url = icon_url;
+    }
 
     public Integer getTask_id() {
         return task_id;
@@ -56,6 +67,7 @@ public class Tasklist {
         this.category_id = category_id;
     }
 
+    
     public String getStart_date() {
         return start_date;
     }
@@ -88,7 +100,5 @@ public class Tasklist {
         this.status = status;
     }
 
-    
-    
 }
 
