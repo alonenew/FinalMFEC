@@ -1,13 +1,10 @@
 import React from "react";
-import Dialog from "../components/dialogDelete";
 
 import TaskAPI from "../API/TaskAPI";
 
 export default function TaskList() {
+
   const dataTask = TaskAPI();
-
-
-  //const dataCategory = CategoryAPI();
   const createTask = () => {
     window.location = "/taskcreate"
   }
@@ -21,7 +18,7 @@ export default function TaskList() {
   };
 
   const DeleteTask = (task_id,task_name) => {
-    if (window.confirm('Are you sure you want to delete Task ID '+task_name))  {
+    if (window.confirm('Are you sure you want to delete Task Name : '+task_name))  {
       let data = {
         task_id: task_id,
       };
@@ -45,14 +42,12 @@ export default function TaskList() {
 
 
   return (
-    <div className="task">
+    <div className="containers">
       <header>
         <div></div>
         <h1>Task List</h1>
         <button className="bcreate" onClick={createTask}>Create</button>
       </header>
-
-      <hr />
       <table className="tabletask">
         <tbody>
           <tr>
@@ -71,7 +66,7 @@ export default function TaskList() {
             <tr key={tasks.task_id}>
               <td>{tasks.task_id}</td>
               <td>{tasks.task_name}</td>
-              <td><img src={tasks.icon_url} width="100px" height="100px" /></td>
+              <td><img src={tasks.icon_url} width="100px" height="100px" alt='icon'/></td>
               <td>{tasks.start_date}</td>
               <td>{tasks.due_date}</td>
               <td>{tasks.note}</td>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <>
-    <div className="container">
+    <div className="nav_bar">
         <ul> 
           <li>
             <Link to="/">HOME</Link>

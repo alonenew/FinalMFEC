@@ -4,7 +4,7 @@ import CategoryAPI from "../API/CategoryAPI";
 
 export default function CreateTask() {
   const dataCategory = CategoryAPI();
-
+  const BASE_URL = "http://localhost:8080";
   const [taskName, setTaskName] = useState();
   const [category_id, setCategory_id] = useState();
   const [startdate, setStartDate] = useState();
@@ -22,7 +22,7 @@ export default function CreateTask() {
       note: note,
       status: status,
     };
-    fetch("http://localhost:8080/tasklist/create", {
+    fetch(BASE_URL+"/tasklist/create", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -40,9 +40,11 @@ export default function CreateTask() {
 
   return (
     <div>
+      <div className="form">
       <form onSubmit={Submit}>
         <h1>Create TaskList</h1>
         <hr />
+        <div style={{margin: "0 20px"}}>
         <label>Task Name :</label>
         <input
           type="text"
@@ -95,9 +97,10 @@ export default function CreateTask() {
           <option value={2}>Doing</option>
           <option value={3}>Not Started</option>
         </select>
-        <br />
+        </div>
         <button className="submit" type="submit">Add Task</button>
       </form>
+      </div>
       <TaskList />
     </div>
   );

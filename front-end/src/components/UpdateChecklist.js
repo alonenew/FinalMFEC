@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import TableChecklistById from "./TableChecklistById";
 
 export default function UpdateChecklist() {
   const [todo_name, setTodo_Name] = useState("");
   const [task_id, setTask_id] = useState("");
   const [task_name, setTask_Name] = useState("");
   const [is_completed, setIs_Completed] = useState("");
-
+  const BASE_URL = "http://localhost:8080";
 
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:8080/checklist/search/" + id)
+    fetch(BASE_URL+"/checklist/search/" + id)
       .then((res) => res.json())
       .then((result) => {
         setTodo_Name(result.data.todo_name);
@@ -22,7 +23,6 @@ export default function UpdateChecklist() {
       
   }, [id]);
 
-  
 
   const Submit = () => {
     var data = {
@@ -31,7 +31,7 @@ export default function UpdateChecklist() {
       'task_id': task_id,
       'is_completed': is_completed,
     };
-    fetch("http://localhost:8080/checklist/update", {
+    fetch(BASE_URL+"/checklist/update", {
       method: "PATCH",
       headers: {
         Accept: "application/form-data",
@@ -48,9 +48,11 @@ export default function UpdateChecklist() {
   };
   return (
     <div>
+    <div className="form">
       <form onSubmit={Submit}>
         <h1>Update Checklist</h1>
         <hr />
+        <div style={{margin: "0 20px"}}>
         <label>Task Name :</label>
         <input type="text" placeholder="Task Name" value={task_name} disabled/>
         <br />
@@ -67,10 +69,11 @@ export default function UpdateChecklist() {
           <option value={0}>Fail</option>
           <option value={1}>Success</option>
         </select>
-        <br />
+        </div>
         <button className="submit" type="submit">Update</button>
       </form>
-
     </div>
+      <TableChecklistById value={id}/>
+      </div>
   );
 }

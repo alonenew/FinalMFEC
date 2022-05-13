@@ -1,16 +1,51 @@
-body{
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  margin: auto;
-}
 
 #root{
-  margin-top: 100px;
+  min-height: 100vh;
+  background-image: url(https://images.unsplash.com/photo-1644329843491-99edfc83de04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80);
+  background-size: cover;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  color: hsl(198, 1%, 29%);
   text-align: center;
+  margin: 0;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
-.container ul {
+.containers {
+  width: 1200px ;
+  height: auto;
+  background: #f1f5f8;
+  background-image: radial-gradient(#bfc0c1 7.2%, transparent 0);
+  background-size: 25px 25px;
+  border-radius: 20px;
+  box-shadow: 4px 3px 7px 2px #00000040;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.containers td{
+  background-color: white;
+}
+
+header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header h1{
+  margin: 0;
+  border-radius: 15px;
+  padding: 5px 10px;
+  background-color: rgb(210, 250, 240);
+  box-shadow: 0px 0px 7px 7px rgba(0, 0, 0, 0.1);
+  
+}
+
+
+.nav_bar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -24,17 +59,17 @@ body{
   box-shadow: 0px 10px 20px 20px rgba(0, 0, 0, 0.2);
 }
 
-.container {
+.nav_bar {
   display: flex;
   justify-content: center;
 }
 
-.container li {
+.nav_bar li {
   float: left;
   margin: 0 30px;
 }
 
-.container li a {
+.nav_bar li a {
   display: block;
   color: white;
   text-align: center;
@@ -42,14 +77,21 @@ body{
   text-decoration: none;
 }
 
-.container li a:hover:not(.active) {
+.nav_bar li a:hover:not(.active) {
   background-color: black;
   color: white;
 }
 
 
-form{
-  text-align: center;
+.form{
+  display: flex;
+  width: fit-content;
+  background-color: white;
+  border-radius: 15px;
+  margin: 0 auto 50px auto;
+}
+form h1{
+  margin: 16px 0;
 }
 
 form ul{
@@ -60,7 +102,7 @@ form ul{
 form label{
   display: inline-block;
   text-align: right;
-  width: 150px;
+  width: 120px;
 }
 
 form input{
@@ -80,15 +122,12 @@ form button{
   list-style: none;
 }
 
-.task{
-  margin: auto;
-  width: 1200px;
-}
 
 .tabletask {
   margin-top: 20px;
   border-collapse: collapse;
   width: 100%;
+  border-radius: 15px;
 }
 
 .tabletask  td, .tabletask  th {
@@ -97,27 +136,24 @@ form button{
 }
 
 .tabletask  tr:hover{
-  background-color: #f2f2f2;
-}
-
-.tabletask  tr:hover {
-  background-color: #ddd;
+  background-color: #3f3f3f;
 }
 
 .tabletask td {
   text-align: center;
 }
 
+
 .tabletask  th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: #04AA6D;
+  background-color:#4CAF50;
   color: white;
 }
 
 .update {
-	background-color:#44c767;
+	background-color:#28c051;
 	border-radius:15px;
 	border: none;
 	cursor:pointer;
@@ -126,7 +162,7 @@ form button{
   width: 70px;
 }
 .update:hover {
-	background-color:blue;
+	background-color: #05a01f;
 }
 .update:active {
 	position:relative;
@@ -134,7 +170,7 @@ form button{
 }
 
 .delete {
-	background-color:red;
+	background-color: red;
 	border-radius:15px;
 	border: none;
 	cursor:pointer;
@@ -143,7 +179,7 @@ form button{
   width: 70px;
 }
 .delete:hover {
-	background-color:orange;
+	background-color:rgb(209, 16, 16);
 }
 .delete:active {
 	position:relative;
@@ -172,7 +208,7 @@ form button{
 
 
 .checklist {
-	background-color:skyblue;
+	background-color:rgb(27, 165, 219);
 	border-radius:15px;
 	border: none;
 	cursor:pointer;
@@ -181,7 +217,7 @@ form button{
   width: 100px;
 }
 .checklist:hover {
-	background-color:violet;
+	background-color: rgb(0, 117, 163);
 }
 .checklist:active {
 	position:relative;
@@ -203,6 +239,7 @@ header{
   margin: auto 0;
   color: white;
   box-shadow: 3px 4px 0px 0px #1564ad;
+  
 }
 .bcreate:hover{
   background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
@@ -215,6 +252,3 @@ header{
   height: 100px;
 }
 
-.success{
-  text-decoration: line-through;
-}

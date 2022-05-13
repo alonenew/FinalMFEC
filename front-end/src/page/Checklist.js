@@ -33,9 +33,12 @@ export default function Checklist() {
 
   return (
     <div>
-      <div className="task">
-        <h1>Checklist</h1>
-        <hr />
+      <div className="containers">
+        <header>
+          <div></div>
+          <h1>Checklist</h1>
+          <div></div>
+        </header> 
         <table className="tabletask">
           <tbody>
             <tr>
@@ -51,7 +54,7 @@ export default function Checklist() {
                 <td>{checklist.todo_id}</td>
                 <td>{checklist.todo_name}</td>
                 <td>{checklist.task_name}</td>
-                {checklist.is_completed === 1 && <td className="success">Success</td>}
+                {checklist.is_completed === 1 && <td><strike>Success</strike></td>}
                 {checklist.is_completed === 0 && <td>Fail</td>}
                 <td>
                   <button

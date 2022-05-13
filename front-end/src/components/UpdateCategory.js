@@ -5,11 +5,11 @@ import Category from "../page/Category";
 export default function UpdateCategory() {
   const [category_name, setCategory_Name] = useState("");
   const [image_url, setImage_url] = useState("");
-
+  const BASE_URL = "http://localhost:8080";
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:8080/category/search/" + id)
+    fetch(BASE_URL+"/category/search/" + id)
       .then((res) => res.json())
       .then((result) => {
         setCategory_Name(result.data.category_name);
@@ -26,7 +26,7 @@ export default function UpdateCategory() {
       'category_name': category_name,
       'image_url': image_url,
     };
-    fetch("http://localhost:8080/category/update", {
+    fetch(BASE_URL+"/category/update", {
       method: "PATCH",
       headers: {
         Accept: "application/form-data",

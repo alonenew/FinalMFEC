@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Home from "./page/home";
 import Navbar from './components/Navbar';
 
 import CreateTask from "./components/CreateTask";
@@ -15,14 +14,15 @@ import UpdateChecklist from "./components/UpdateChecklist";
 import CreateCategory from "./components/CreateCategory";
 import UpdateCategory from "./components/UpdateCategory";
 import Checklist from "./page/Checklist";
+import TaskList from "./page/TaskList";
 
 export default function App() {
   return (
     <div className="App">
       <Router>
         <Navbar />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
+        <Routes className="container">
+          <Route path="/" element={<TaskList />} />
           <Route path="/taskcreate" element={<CreateTask />} />
           <Route path="/taskupdate:id" element={<UpdateTask />} />
           <Route path="/checklist" element={<Checklist />} />

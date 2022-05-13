@@ -8,9 +8,12 @@ export default function Category() {
 
   return (
     <div>
-      <div className="task">
-        <h1>Category</h1>
-        <hr />
+      <div className="containers">
+      <header>
+          <div></div>
+          <h1>Category</h1>
+          <div></div>
+        </header>
         <table className="tabletask">
           <tbody>
             <tr>
@@ -22,9 +25,9 @@ export default function Category() {
             {dataCategory.map((category) => (
               <tr key={category.category_id}>
                 <td>{category.category_id}</td>
-                <td ><img src={category.icon_url} height="100px" width="auto" /></td>
+                <td ><img src={category.icon_url} height="100px" width="auto" alt="iconURL" /></td>
                 <td>{category.category_name}</td>
-                <td><img src={category.image_url} height="100px" width="auto" /> </td>
+                <td><img src={category.image_url} height="100px" width="auto" alt="imageURL" /> </td>
               </tr>
             ))}
           </tbody>
